@@ -10,6 +10,47 @@
   flex-direction: column;
 }
 
-.btn {
-  cursor: pointer;
+/* flex START */
+.flex {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.flex.cc {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex.tb {
+  flex-direction: column;
+}
+
+.flex.wrap {
+  flex-wrap: wrap;
+}
+
+.flex.justify-center {
+  justify-content: center;
+}
+
+.flex.justify-between {
+  justify-content: space-between;
+}
+
+.flex.justify-around {
+  justify-content: space-around;
+}
+
+.flex.align-center {
+  align-items: center;
+}
+
+/* flex => item */
+.flex .flex-grow {
+  flex-grow: 1;
+}
+
+.flex .flex-none {
+  flex: none;
 }

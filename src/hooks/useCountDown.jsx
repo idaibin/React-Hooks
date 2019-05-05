@@ -1,20 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
+import { useInterval } from './index'
 /**
  *
- * @param {*} seconds 倒计时秒数
- * @param {*} delay 倒计时间隔
+ * @param {*number} seconds 倒计时秒数
+ * @param {*number} delay 倒计时间隔
  */
 const end = 0
 const useCountDown = (seconds, delay = 1000) => {
-  let timer = null;
   const [second, setSecond] = useState(seconds);
-  useEffect(() => {
-    timer = setTimeout(() => {
-      if (second > end) setSecond(second - 1);
-    }, delay);
-    return () => clearTimeout(timer);
-  });
+  const [run, setRun] = useState(true);
+
+  useInterval(() => {
+    if (second <= end) setRun(false);
+    else setSecond(second - 1);
+  }, run ? delay : null);
+
   return second;
 };
 

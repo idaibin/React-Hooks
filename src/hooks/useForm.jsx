@@ -2,8 +2,8 @@ import { useState, useCallback } from "react";
 
 /**
  *
- * @param {*} form 表单字段
- * @param {*} rule 校验规则，正则 和 callback(必须return)
+ * @param {*object} form 表单字段
+ * @param {*object} rule 校验规则，正则 和 callback(必须return)
  */
 const useForm = (form = {}, rule = {}) => {
   const [formData, setFormData] = useState(form)
