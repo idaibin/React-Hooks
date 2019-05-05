@@ -1,37 +1,42 @@
 import React from "react";
 import "./index.css";
-import { useForm } from '../../hooks'
-
+import { useForm } from "../../hooks";
 
 const Form = () => {
-  const [formData, setFormData] = useForm({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ""
-  }, {
-    firstName: /^\d{0,6}$/,
-    lastName: v =>  v > 100 ? 100 : v
-  });
+  const [formData, setFormData] = useForm(
+    {
+      regNumber: "",
+      funcNumber: "",
+      email: "",
+      password: ""
+    },
+    {
+      regNumber: /^\d{0,6}$/,
+      funcNumber: v => {
+        if (/^\d{0,10}$/.test(v)) return v;
+        return funcNumber;
+      }
+    }
+  );
 
-  const { firstName, lastName, email, password } = formData;
+  const { regNumber, funcNumber, email, password } = formData;
 
   return (
     <form>
       <input
-        value={firstName}
+        value={regNumber}
         onChange={e => setFormData(e)}
-        placeholder="First name"
+        placeholder="6位数字"
         type="text"
-        name="firstName"
+        name="regNumber"
         required
       />
       <input
-        value={lastName}
+        value={funcNumber}
         onChange={e => setFormData(e)}
-        placeholder="Last name"
+        placeholder="10位数字"
         type="text"
-        name="lastName"
+        name="funcNumber"
         required
       />
       <input
