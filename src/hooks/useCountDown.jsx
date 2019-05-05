@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const useCountDown = (seconds, end = 0, delay = 1000) => {
+/**
+ *
+ * @param {*} seconds 倒计时秒数
+ * @param {*} delay 倒计时间隔
+ */
+const end = 0
+const useCountDown = (seconds, delay = 1000) => {
   let timer = null;
   const [second, setSecond] = useState(seconds);
   useEffect(() => {
@@ -12,4 +18,4 @@ const useCountDown = (seconds, end = 0, delay = 1000) => {
   return second;
 };
 
-export default useCountDown;
+export default useCountDown

@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.css";
+import { useForm } from '../../hooks'
+
 
 const Form = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useForm({
     firstName: "",
     lastName: "",
     email: "",
     password: ""
+  }, {
+    firstName: /^\d{0,6}$/,
+    lastName: v =>  v > 100 ? 100 : v
   });
-
-  const updateFormData = event =>
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    });
 
   const { firstName, lastName, email, password } = formData;
 
@@ -21,7 +20,7 @@ const Form = () => {
     <form>
       <input
         value={firstName}
-        onChange={e => updateFormData(e)}
+        onChange={e => setFormData(e)}
         placeholder="First name"
         type="text"
         name="firstName"
@@ -29,7 +28,7 @@ const Form = () => {
       />
       <input
         value={lastName}
-        onChange={e => updateFormData(e)}
+        onChange={e => setFormData(e)}
         placeholder="Last name"
         type="text"
         name="lastName"
@@ -37,7 +36,7 @@ const Form = () => {
       />
       <input
         value={email}
-        onChange={e => updateFormData(e)}
+        onChange={e => setFormData(e)}
         placeholder="Email address"
         type="email"
         name="email"
@@ -45,7 +44,7 @@ const Form = () => {
       />
       <input
         value={password}
-        onChange={e => updateFormData(e)}
+        onChange={e => setFormData(e)}
         placeholder="Password"
         type="password"
         name="password"
