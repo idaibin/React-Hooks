@@ -1,16 +1,21 @@
 import React from "react";
 import "./index.css";
-import { useInput, useInputNumber } from '../../hooks'
+import { useInput, useInputNumber, useInputInit } from '../../hooks'
 
 
 const Form = () => {
-  const userName = useInput(undefined, {
+  const userName = useInput('', {
     required: true,
     maxLength: 10,
     placeholder: 'User Name and Max 10 letter'
   });
-  const userAge = useInputNumber(undefined, {
+
+  const userAge = useInputInit('', {
     placeholder: 'User age'
+  })
+
+  const numberInput = useInputNumber('', {
+    placeholder: 'number'
   })
   return (
     <form>
@@ -19,6 +24,9 @@ const Form = () => {
       />
       <input
         {...userAge}
+      />
+      <input
+        {...numberInput}
       />
       <button type="submit">Submit</button>
     </form>
