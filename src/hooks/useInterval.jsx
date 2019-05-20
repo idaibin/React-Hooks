@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
  * @param {*function} callback
  * @param {*number} delay
  */
-const useInterval = (callback, delay) => {
+export const useInterval = (callback, delay) => {
   const savedCallback = useRef()
 
   // 每次保存callback
@@ -24,5 +24,3 @@ const useInterval = (callback, delay) => {
     }
   }, [delay])
 }
-
-export default useInterval

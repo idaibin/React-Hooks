@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 
 /**
- *
  * @param {*object} form 表单字段
  * @param {*object} rule 校验规则，正则 和 callback(必须return)
  */
@@ -26,4 +25,38 @@ const useForm = (form = {}, rule = {}) => {
   return [formData, func]
 }
 
-export default useForm
+/**
+ * @param {*string} initValue input值
+ * @param {*object} property input属性
+ */
+const useInput = (initValue = '', property = { type: 'text' }) => {
+  const [value, setValue] = useState(initValue)
+  return {
+    ...property,
+    value,
+    onChange: event => {
+      setValue(event.target.value)
+    }
+  }
+}
+
+/**
+ * @param {*string} initValue input值
+ */
+const useInputNumber = (initValue = '', property = {}) => {
+  const input = useInput(initValue, {
+    ...property,
+    type: 'number'
+  })
+  return input
+}
+
+/**
+ * @param {*string} initValue input值
+ */
+// const useInputPhone = (initValue = '') => {
+//   const input = useInput(initValue, { type = 'number' })
+//   return input
+// }
+
+export { useForm, useInput, useInputNumber }

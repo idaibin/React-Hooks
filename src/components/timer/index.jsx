@@ -1,37 +1,49 @@
 import React, { useState } from "react";
-import { useCountDown, useInterval } from '../../hooks'
+import { useCounter, useInterval } from '../../hooks'
 
 import "./index.css";
 
-const Timer = () => {
-  const countDown1 = useCountDown(20);
-  const countDown2 = useCountDown(40);
-  const countDown3 = useCountDown(60);
-
+const CountDown = ({delay = 1000}) => {
   const [count, setCount] = useState(0);
-  const [delay, setDelay] = useState(1000);
-
   useInterval(() => {
-    setCount(count + 1)
+    setCount(prev => prev + 1)
   }, delay)
+  return <span>{count}</span>
+}
+
+const CounterDemo = () => {
+  const [counter, increase, decrease] = useCounter(0, 5);
 
   return (
+    <div>
+      <span className="btn" onClick={increase}>increase</span>
+      <span>{counter}</span>
+      <span className="btn" onClick={counter > 0 ? decrease : () => {}}>decrease</span>
+    </div>
+  )
+}
+
+function InputDemo ({ delay, callback }) {
+  return (
+    <input
+      type="number"
+      value={delay}
+      onChange={(e) => callback(e.target.value)}
+    />
+  )
+}
+
+const Timer = () => {
+  const [delay, setDelay] = useState(1000);
+  return (
     <div className="timer_wrap">
-      <ul className="tl">
-        <li> 倒计时1 {countDown1}</li>
-        <li> 倒计时2 {countDown2}</li>
-        <li> 倒计时3 {countDown3}</li>
-      </ul>
       <div>
         <h3>定时器修改频率</h3>
         <div className="flex align-center">
-          <input
-            type="number"
-            value={delay}
-            onChange={(e) => setDelay(e.target.value)}
-          />
-          <span>{count}</span>
+          <InputDemo delay={delay} callback={setDelay}/>
+          <CountDown delay={delay} />
         </div>
+        <CounterDemo />
       </div>
     </div>
   );

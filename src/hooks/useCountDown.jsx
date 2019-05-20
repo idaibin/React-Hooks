@@ -7,7 +7,7 @@ import { useInterval } from './index'
  * @param {*number} delay 倒计时间隔
  */
 const end = 0
-const useCountDown = (seconds, delay = 1000) => {
+export const useCountDown = (seconds, delay = 1000) => {
   const [second, setSecond] = useState(seconds);
   const [run, setRun] = useState(true);
 
@@ -19,4 +19,3 @@ const useCountDown = (seconds, delay = 1000) => {
   return second;
 };
 
-export default useCountDown

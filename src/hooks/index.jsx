@@ -1,9 +1,4 @@
-import useInterval from "./useInterval";
-import useCountDown from "./useCountDown";
-import useForm from "./useForm";
-
-export {
-  useInterval,
-  useForm,
-  useCountDown
-}
+export * from "./useInterval";
+export * from "./useCountDown";
+export * from "./useForm";
+export * from "./useCounter";
